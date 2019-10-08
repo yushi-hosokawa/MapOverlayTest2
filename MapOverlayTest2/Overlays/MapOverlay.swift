@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class ParkMapOverlay: NSObject, MKOverlay {
+class MapOverlay: NSObject, MKOverlay {
   var coordinate: CLLocationCoordinate2D
   var boundingMapRect: MKMapRect
 

@@ -18,6 +18,7 @@
 		D127F9C1234B211F00A6AA8E /* MapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127F9C0234B211F00A6AA8E /* MapOverlay.swift */; };
 		D127F9C3234B217B00A6AA8E /* MapOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127F9C2234B217B00A6AA8E /* MapOverlayView.swift */; };
 		D127F9C6234B234800A6AA8E /* Park.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127F9C5234B234800A6AA8E /* Park.swift */; };
+		D127F9CC234B93FF00A6AA8E /* MagicMountain.plist in Resources */ = {isa = PBXBuildFile; fileRef = D127F9CB234B93FF00A6AA8E /* MagicMountain.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		D127F9C0234B211F00A6AA8E /* MapOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOverlay.swift; sourceTree = "<group>"; };
 		D127F9C2234B217B00A6AA8E /* MapOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOverlayView.swift; sourceTree = "<group>"; };
 		D127F9C5234B234800A6AA8E /* Park.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Park.swift; sourceTree = "<group>"; };
+		D127F9CB234B93FF00A6AA8E /* MagicMountain.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = MagicMountain.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 		D127F9A5234B178C00A6AA8E /* MapOverlayTest2 */ = {
 			isa = PBXGroup;
 			children = (
+				D127F9C8234B8FF200A6AA8E /* Park Information */,
 				D127F9C4234B230C00A6AA8E /* Models */,
 				D127F9BF234B20E200A6AA8E /* Overlays */,
 				D127F9BA234B17B600A6AA8E /* Views */,
@@ -112,6 +115,14 @@
 				D127F9C5234B234800A6AA8E /* Park.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		D127F9C8234B8FF200A6AA8E /* Park Information */ = {
+			isa = PBXGroup;
+			children = (
+				D127F9CB234B93FF00A6AA8E /* MagicMountain.plist */,
+			);
+			path = "Park Information";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D127F9B3234B178E00A6AA8E /* LaunchScreen.storyboard in Resources */,
+				D127F9CC234B93FF00A6AA8E /* MagicMountain.plist in Resources */,
 				D127F9B0234B178E00A6AA8E /* Preview Assets.xcassets in Resources */,
 				D127F9AD234B178E00A6AA8E /* Assets.xcassets in Resources */,
 			);

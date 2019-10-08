@@ -17,8 +17,9 @@ class OriginalMapView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        //小金井は35.709764,139.523009
         let location:CLLocationCoordinate2D
-            = CLLocationCoordinate2DMake(35.709764,139.523009)
+            = CLLocationCoordinate2DMake(34.4248,-118.5971)
         
         self.MapView.setCenter(location,animated:true)
         
