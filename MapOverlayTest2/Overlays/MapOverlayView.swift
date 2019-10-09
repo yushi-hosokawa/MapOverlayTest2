@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 
 class MapOverlayView: MKOverlayRenderer {
+   
   var overlayImage: UIImage
   
   init(overlay:MKOverlay, overlayImage:UIImage) {
