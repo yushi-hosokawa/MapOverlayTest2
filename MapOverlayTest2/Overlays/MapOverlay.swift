@@ -9,12 +9,17 @@
 import UIKit
 import MapKit
 
+
+
 class MapOverlay: NSObject, MKOverlay {
   var coordinate: CLLocationCoordinate2D
   var boundingMapRect: MKMapRect
+    
+    
 
   init(park: Park) {
     boundingMapRect = park.overlayBoundingMapRect
     coordinate = park.midCoordinate
   }
 }
+

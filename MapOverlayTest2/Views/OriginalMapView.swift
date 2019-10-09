@@ -12,8 +12,9 @@ import CoreLocation
 import MapKit
 import SwiftUI
 
+
 class OriginalMapView: UIView {
-    @IBOutlet weak var MapView: MKMapView!
+    @IBOutlet weak var mapView: MKMapView!
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -21,15 +22,15 @@ class OriginalMapView: UIView {
         let location:CLLocationCoordinate2D
             = CLLocationCoordinate2DMake(34.4248,-118.5971)
         
-        self.MapView.setCenter(location,animated:true)
+        self.mapView.setCenter(location,animated:true)
         
         
-        var region:MKCoordinateRegion = self.MapView.region
+        var region:MKCoordinateRegion = self.mapView.region
         region.center = location
         region.span.latitudeDelta = 0.005
         region.span.longitudeDelta = 0.005
         
-        self.MapView.setRegion(region,animated:true)
+        self.mapView.setRegion(region,animated:true)
         
 
         
