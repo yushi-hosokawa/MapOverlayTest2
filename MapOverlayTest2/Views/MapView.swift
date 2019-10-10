@@ -37,18 +37,26 @@ struct SUMapView: UIViewRepresentable {
         uiView.delegate = mapViewDelegate                          // (1) This should be set in makeUIView, but it is getting reset to `nil`
         uiView.translatesAutoresizingMaskIntoConstraints = false   // (2) In the absence of this, we get constraints error on rotation; and again, it seems one should do this in makeUIView, but has to be here
 
-        addMap(park:park,view:uiView)
+        let overlay = MapOverlay(park: park)
+        uiView.addOverlay(overlay)
         
+        
+        //annotationの処理
+        guard let attractions = Park.plist("MagicMountainAttractions") as? [[String : String]] else { return }
+          
+        for attraction in attractions {
+          let coordinate = Park.parseCoord(dict: attraction, fieldName: "location")
+          let title = attraction["name"] ?? ""
+          let typeRawValue = Int(attraction["type"] ?? "0") ?? 0
+          let type = AttractionType(rawValue: typeRawValue) ?? .misc
+          let subtitle = attraction["subtitle"] ?? ""
+          let annotation = AttractionAnnotation(coordinate: coordinate, title: title, subtitle: subtitle, type: type)
+          uiView.addAnnotation(annotation)
+        }
     }
 }
 
-private extension SUMapView {
-    func addMap(park:Park,view:MKMapView)
-    {
-        let overlay = MapOverlay(park: park)
-        view.addOverlay(overlay)
-    }
-}
+
 
 class MapViewDelegate: NSObject, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -58,5 +66,11 @@ class MapViewDelegate: NSObject, MKMapViewDelegate {
           }
           return MKOverlayRenderer()
         }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+      let annotationView = AttractionAnnotationView(annotation: annotation, reuseIdentifier: "Attraction")
+      annotationView.canShowCallout = true
+      return annotationView
+    }
 }
 

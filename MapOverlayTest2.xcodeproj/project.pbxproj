@@ -18,6 +18,9 @@
 		D127F9C3234B217B00A6AA8E /* MapOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127F9C2234B217B00A6AA8E /* MapOverlayView.swift */; };
 		D127F9C6234B234800A6AA8E /* Park.swift in Sources */ = {isa = PBXBuildFile; fileRef = D127F9C5234B234800A6AA8E /* Park.swift */; };
 		D127F9CC234B93FF00A6AA8E /* MagicMountain.plist in Resources */ = {isa = PBXBuildFile; fileRef = D127F9CB234B93FF00A6AA8E /* MagicMountain.plist */; };
+		D1B34CF5234DDD9A00C53795 /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B34CF4234DDD9A00C53795 /* MapAnnotation.swift */; };
+		D1B34CF7234DDE0000C53795 /* MapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B34CF6234DDE0000C53795 /* MapAnnotationView.swift */; };
+		D1B34CF9234DDE9C00C53795 /* MagicMountainAttractions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1B34CF8234DDE9C00C53795 /* MagicMountainAttractions.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		D127F9C2234B217B00A6AA8E /* MapOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOverlayView.swift; sourceTree = "<group>"; };
 		D127F9C5234B234800A6AA8E /* Park.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Park.swift; sourceTree = "<group>"; };
 		D127F9CB234B93FF00A6AA8E /* MagicMountain.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = MagicMountain.plist; sourceTree = "<group>"; };
+		D1B34CF4234DDD9A00C53795 /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
+		D1B34CF6234DDE0000C53795 /* MapAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotationView.swift; sourceTree = "<group>"; };
+		D1B34CF8234DDE9C00C53795 /* MagicMountainAttractions.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = MagicMountainAttractions.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,7 @@
 		D127F9A5234B178C00A6AA8E /* MapOverlayTest2 */ = {
 			isa = PBXGroup;
 			children = (
+				D1B34CF3234DDD0000C53795 /* Annotations */,
 				D127F9C8234B8FF200A6AA8E /* Park Information */,
 				D127F9C4234B230C00A6AA8E /* Models */,
 				D127F9BF234B20E200A6AA8E /* Overlays */,
@@ -118,8 +125,18 @@
 			isa = PBXGroup;
 			children = (
 				D127F9CB234B93FF00A6AA8E /* MagicMountain.plist */,
+				D1B34CF8234DDE9C00C53795 /* MagicMountainAttractions.plist */,
 			);
 			path = "Park Information";
+			sourceTree = "<group>";
+		};
+		D1B34CF3234DDD0000C53795 /* Annotations */ = {
+			isa = PBXGroup;
+			children = (
+				D1B34CF4234DDD9A00C53795 /* MapAnnotation.swift */,
+				D1B34CF6234DDE0000C53795 /* MapAnnotationView.swift */,
+			);
+			path = Annotations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,6 +201,7 @@
 				D127F9CC234B93FF00A6AA8E /* MagicMountain.plist in Resources */,
 				D127F9B0234B178E00A6AA8E /* Preview Assets.xcassets in Resources */,
 				D127F9AD234B178E00A6AA8E /* Assets.xcassets in Resources */,
+				D1B34CF9234DDE9C00C53795 /* MagicMountainAttractions.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,7 +218,9 @@
 				D127F9C6234B234800A6AA8E /* Park.swift in Sources */,
 				D127F9C3234B217B00A6AA8E /* MapOverlayView.swift in Sources */,
 				D127F9AB234B178C00A6AA8E /* ContentView.swift in Sources */,
+				D1B34CF7234DDE0000C53795 /* MapAnnotationView.swift in Sources */,
 				D127F9C1234B211F00A6AA8E /* MapOverlay.swift in Sources */,
+				D1B34CF5234DDD9A00C53795 /* MapAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
