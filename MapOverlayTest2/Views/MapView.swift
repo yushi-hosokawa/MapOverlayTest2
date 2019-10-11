@@ -50,7 +50,6 @@ struct SUMapView: UIViewRepresentable {
         //ここからannotationの追加
         guard let attractions = Park.plist("MagicMountainAttractions") as? [[String : String]]
         else { return }
-        
         for attraction in attractions {
           let coordinate = Park.parseCoord(dict: attraction, fieldName: "location")
           let title = attraction["name"] ?? ""
@@ -65,21 +64,13 @@ struct SUMapView: UIViewRepresentable {
     }
 }
 
-func addAttractionPins(uiview: MKMapView) {
-    print ("addAttractionPin呼ばれた")
-}
-
-
-
-
-
 class MapViewDelegate: NSObject, MKMapViewDelegate {
 
 
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
          print("overlay呼ばれた")
           if overlay is MapOverlay {
-            return MapOverlayView(overlay: overlay, overlayImage: #imageLiteral(resourceName: "overlay_park"))
+            return MapOverlayView(overlay: overlay, overlayImage: #imageLiteral(resourceName: "kousi"))
           }
           return MKOverlayRenderer()
     }
