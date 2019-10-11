@@ -40,37 +40,46 @@ struct SUMapView: UIViewRepresentable {
         let overlay = MapOverlay(park: park)
         uiView.addOverlay(overlay)
         
-        
-        //annotationの処理
-        guard let attractions = Park.plist("MagicMountainAttractions") as? [[String : String]] else { return }
-          
-        for attraction in attractions {
-          let coordinate = Park.parseCoord(dict: attraction, fieldName: "location")
-          let title = attraction["name"] ?? ""
-          let typeRawValue = Int(attraction["type"] ?? "0") ?? 0
-          let type = AttractionType(rawValue: typeRawValue) ?? .misc
-          let subtitle = attraction["subtitle"] ?? ""
-          let annotation = AttractionAnnotation(coordinate: coordinate, title: title, subtitle: subtitle, type: type)
-          uiView.addAnnotation(annotation)
-        }
+        addAttractionPins(uiview: uiView)
+
+
     }
+}
+
+func addAttractionPins(uiview: MKMapView) {
+    print ("addAttractionPin呼ばれた")
+  guard let attractions = Park.plist("MagicMountainAttractions") as? [[String : String]] else { return }
+    
+  for attraction in attractions {
+    let coordinate = Park.parseCoord(dict: attraction, fieldName: "location")
+    let title = attraction["name"] ?? ""
+    let typeRawValue = Int(attraction["type"] ?? "0") ?? 0
+    let type = AttractionType(rawValue: typeRawValue) ?? .misc
+    let subtitle = attraction["subtitle"] ?? ""
+    let annotation = AttractionAnnotation(coordinate: coordinate, title: title, subtitle: subtitle, type: type)
+    uiview.addAnnotation(annotation)
+  }
 }
 
 
 
+
+
 class MapViewDelegate: NSObject, MKMapViewDelegate {
+    
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        print("呼ばれた")
+         print("overlay呼ばれた")
           if overlay is MapOverlay {
             return MapOverlayView(overlay: overlay, overlayImage: #imageLiteral(resourceName: "overlay_park"))
           }
           return MKOverlayRenderer()
-        }
+    }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-      let annotationView = AttractionAnnotationView(annotation: annotation, reuseIdentifier: "Attraction")
-      annotationView.canShowCallout = true
-      return annotationView
+        print("annotationのmapViewが呼ばれた")
+        let annotationView = AttractionAnnotationView(annotation: annotation, reuseIdentifier: "Attraction")
+        annotationView.canShowCallout = true
+        return annotationView
     }
 }
 
