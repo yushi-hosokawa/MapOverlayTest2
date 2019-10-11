@@ -25,7 +25,13 @@ struct SUMapView: UIViewRepresentable {
     
     func updateUIView(_ uiView: MKMapView, context: UIViewRepresentableContext<SUMapView>) {
 
-  
+        let Pannotation = MKPointAnnotation()
+        Pannotation.coordinate = CLLocationCoordinate2DMake(34.4248,-118.5971)
+        Pannotation.title = "hoge"
+        Pannotation.subtitle = "hogege"
+        uiView.addAnnotation(Pannotation)
+        
+        
         let latDelta = park.overlayTopLeftCoordinate.latitude -
         park.overlayBottomRightCoordinate.latitude
         
@@ -40,7 +46,20 @@ struct SUMapView: UIViewRepresentable {
         let overlay = MapOverlay(park: park)
         uiView.addOverlay(overlay)
         
-        addAttractionPins(uiview: uiView)
+     //   addAttractionPins(uiview: uiView)
+        //ここからannotationの追加
+        guard let attractions = Park.plist("MagicMountainAttractions") as? [[String : String]]
+        else { return }
+        
+        for attraction in attractions {
+          let coordinate = Park.parseCoord(dict: attraction, fieldName: "location")
+          let title = attraction["name"] ?? ""
+          let typeRawValue = Int(attraction["type"] ?? "0") ?? 0
+          let type = AttractionType(rawValue: typeRawValue) ?? .misc
+          let subtitle = attraction["subtitle"] ?? ""
+          let annotation = AttractionAnnotation(coordinate: coordinate, title: title, subtitle: subtitle, type: type)
+            uiView.addAnnotation(annotation)
+        }
 
 
     }
@@ -48,17 +67,6 @@ struct SUMapView: UIViewRepresentable {
 
 func addAttractionPins(uiview: MKMapView) {
     print ("addAttractionPin呼ばれた")
-  guard let attractions = Park.plist("MagicMountainAttractions") as? [[String : String]] else { return }
-    
-  for attraction in attractions {
-    let coordinate = Park.parseCoord(dict: attraction, fieldName: "location")
-    let title = attraction["name"] ?? ""
-    let typeRawValue = Int(attraction["type"] ?? "0") ?? 0
-    let type = AttractionType(rawValue: typeRawValue) ?? .misc
-    let subtitle = attraction["subtitle"] ?? ""
-    let annotation = AttractionAnnotation(coordinate: coordinate, title: title, subtitle: subtitle, type: type)
-    uiview.addAnnotation(annotation)
-  }
 }
 
 
@@ -66,7 +74,8 @@ func addAttractionPins(uiview: MKMapView) {
 
 
 class MapViewDelegate: NSObject, MKMapViewDelegate {
-    
+
+
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
          print("overlay呼ばれた")
           if overlay is MapOverlay {
@@ -75,11 +84,13 @@ class MapViewDelegate: NSObject, MKMapViewDelegate {
           return MKOverlayRenderer()
     }
     
+
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         print("annotationのmapViewが呼ばれた")
         let annotationView = AttractionAnnotationView(annotation: annotation, reuseIdentifier: "Attraction")
         annotationView.canShowCallout = true
         return annotationView
     }
+
 }
 
