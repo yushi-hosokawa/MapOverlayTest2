@@ -3,19 +3,19 @@ import MapKit
 
 enum AttractionType: Int {
   case misc = 0
-  case spot1
-  case spot2
-  case spot3
+  case ride
+  case food
+  case firstAid
   
   func image() -> UIImage {
     switch self {
     case .misc:
       return #imageLiteral(resourceName: "spot4")
-    case .spot1:
+    case .ride:
       return #imageLiteral(resourceName: "spot1")
-    case .spot2:
+    case .food:
       return #imageLiteral(resourceName: "spot2")
-    case .spot3:
+    case .firstAid:
       return #imageLiteral(resourceName: "spot3")
     }
   }
