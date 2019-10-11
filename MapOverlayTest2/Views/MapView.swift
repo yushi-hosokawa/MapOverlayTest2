@@ -42,11 +42,10 @@ struct SUMapView: UIViewRepresentable {
         
         uiView.delegate = mapViewDelegate                          // (1) This should be set in makeUIView, but it is getting reset to `nil`
         uiView.translatesAutoresizingMaskIntoConstraints = false   // (2) In the absence of this, we get constraints error on rotation; and again, it seems one should do this in makeUIView, but has to be here
-
+        //ここでoverlayを追加
         let overlay = MapOverlay(park: park)
         uiView.addOverlay(overlay)
         
-     //   addAttractionPins(uiview: uiView)
         //ここからannotationの追加
         guard let attractions = Park.plist("MagicMountainAttractions") as? [[String : String]]
         else { return }
@@ -65,8 +64,8 @@ struct SUMapView: UIViewRepresentable {
 }
 
 class MapViewDelegate: NSObject, MKMapViewDelegate {
-
-
+    
+    //overlayがmapにある時に呼ばれる
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
          print("overlay呼ばれた")
           if overlay is MapOverlay {
@@ -75,7 +74,7 @@ class MapViewDelegate: NSObject, MKMapViewDelegate {
           return MKOverlayRenderer()
     }
     
-
+    //annotationがmap上によばれている時に呼ばれる
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         print("annotationのmapViewが呼ばれた")
         let annotationView = AttractionAnnotationView(annotation: annotation, reuseIdentifier: "Attraction")
